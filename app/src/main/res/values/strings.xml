@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">UPLift QR Scanner</string>
+    <string name="status_label">Baggage Status</string>
+    <string name="status_value">[status]</string>
+    <string name="passenger_label">Passenger Name</string>
+    <string name="passenger_value">[passenger]</string>
+    <string name="fee_label">Fee</string>
+    <string name="fee_value">[0.00]</string>
+    <string name="number_label">Contact Number</string>
+    <string name="number_value">[00000000000]</string>
+    <string name="action_refresh">Refresh</string>
+</resources>

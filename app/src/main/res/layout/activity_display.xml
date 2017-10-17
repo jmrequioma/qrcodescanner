@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="Scan Again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:id="@+id/btnScan"
+            android:layout_alignParentBottom="true"
+            android:onClick="onClick"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="@string/passenger_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/status_label" />
+
+        <TextView
+            android:text="@string/passenger_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/passenger_value"
+            android:textSize="18sp"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignStart="@+id/status_value" />
+
+        <TextView
+            android:text="@string/status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/status_label"
+            android:layout_marginTop="40dp"
+            android:textSize="14sp"
+            android:layout_marginEnd="18dp"
+            android:layout_below="@+id/passenger_value"
+            android:layout_toStartOf="@+id/status_value" />
+
+        <TextView
+            android:text="@string/status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/status_value"
+            android:textSize="18sp"
+            android:layout_marginStart="59dp"
+            android:layout_alignTop="@+id/status_label"
+            android:layout_alignStart="@+id/btnScan" />
+
+        <TextView
+            android:text="@string/fee_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fee_label"
+            android:layout_marginTop="29dp"
+            android:layout_below="@+id/status_value"
+            android:layout_alignStart="@+id/status_label" />
+
+        <TextView
+            android:text="@string/fee_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fee_value"
+            android:textSize="18sp"
+            android:layout_alignTop="@+id/fee_label"
+            android:layout_alignEnd="@+id/btnScan" />
+
+        <TextView
+            android:text="@string/number_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fee_value"
+            android:layout_alignStart="@+id/fee_label"
+            android:layout_marginTop="37dp"
+            android:id="@+id/number_label" />
+
+        <TextView
+            android:text="@string/number_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/number_value"
+            android:textSize="18sp"
+            android:layout_alignTop="@+id/number_label"
+            android:layout_alignStart="@+id/fee_value" />
+    </RelativeLayout>
+</LinearLayout>
