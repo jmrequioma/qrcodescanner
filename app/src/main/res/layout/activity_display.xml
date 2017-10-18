@@ -8,88 +8,210 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Scan Again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
             android:id="@+id/btnScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
             android:onClick="onClick"
-            android:layout_centerHorizontal="true" />
+            android:text="Scan Again"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="@string/passenger_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/status_label" />
+            android:layout_alignStart="@+id/porter_label"
+            android:layout_marginTop="94dp"
+            android:text="@string/passenger_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="@string/passenger_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/passenger_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignStart="@+id/porter_value"
+            android:text="@string/passenger_value"
             android:textSize="18sp"
-            android:layout_alignTop="@+id/textView"
-            android:layout_alignStart="@+id/status_value" />
+            android:textStyle="bold" />
 
         <TextView
-            android:text="@string/status_label"
+            android:id="@+id/porter_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/status_label"
-            android:layout_marginTop="40dp"
-            android:textSize="14sp"
-            android:layout_marginEnd="18dp"
-            android:layout_below="@+id/passenger_value"
-            android:layout_toStartOf="@+id/status_value" />
+            android:layout_alignStart="@+id/via_label"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="26dp"
+            android:text="@string/porter_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="@string/status_value"
+            android:id="@+id/porter_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/status_value"
+            android:layout_alignBaseline="@+id/porter_label"
+            android:layout_alignBottom="@+id/porter_label"
+            android:layout_alignStart="@+id/via_value"
+            android:text="@string/porter_value"
             android:textSize="18sp"
-            android:layout_marginStart="59dp"
-            android:layout_alignTop="@+id/status_label"
-            android:layout_alignStart="@+id/btnScan" />
+            android:textStyle="bold" />
 
         <TextView
-            android:text="@string/fee_label"
+            android:id="@+id/via_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/porter_label"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="21dp"
+            android:text="@string/via_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/via_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/via_label"
+            android:layout_alignBottom="@+id/via_label"
+            android:layout_alignStart="@+id/destination_value"
+            android:text="@string/via_value"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/destination_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/via_label"
+            android:layout_below="@+id/via_label"
+            android:layout_marginTop="22dp"
+            android:text="@string/destination_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/destination_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/destination_label"
+            android:layout_alignBottom="@+id/destination_label"
+            android:layout_marginStart="36dp"
+            android:layout_toEndOf="@+id/bus_label"
+            android:text="@string/destination_value"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bus_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/destination_label"
+            android:layout_below="@+id/destination_label"
+            android:layout_marginTop="23dp"
+            android:text="@string/bus_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bus_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bus_label"
+            android:layout_alignStart="@+id/destination_value"
+            android:text="@string/bus_value"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/loading_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bus_label"
+            android:layout_below="@+id/bus_label"
+            android:layout_marginTop="21dp"
+            android:text="@string/loading_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/loading_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/loading_label"
+            android:layout_alignStart="@+id/bus_value"
+            android:text="@string/loading_value"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/weight_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/loading_label"
+            android:layout_below="@+id/loading_label"
+            android:layout_marginTop="24dp"
+            android:text="@string/weight_label"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/weight_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/weight_label"
+            android:layout_alignBottom="@+id/weight_label"
+            android:layout_alignStart="@+id/loading_value"
+            android:text="@string/weight_value"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/fee_label"
-            android:layout_marginTop="29dp"
-            android:layout_below="@+id/status_value"
-            android:layout_alignStart="@+id/status_label" />
-
-        <TextView
-            android:text="@string/fee_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="@string/fee_label"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/weight_label"
+            android:layout_alignStart="@+id/weight_label" />
+
+        <TextView
             android:id="@+id/fee_value"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/weight_value"
             android:layout_alignTop="@+id/fee_label"
-            android:layout_alignEnd="@+id/btnScan" />
-
-        <TextView
-            android:text="@string/number_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fee_value"
-            android:layout_alignStart="@+id/fee_label"
-            android:layout_marginTop="37dp"
-            android:id="@+id/number_label" />
-
-        <TextView
-            android:text="@string/number_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/number_value"
+            android:text="@string/fee_value"
             android:textSize="18sp"
-            android:layout_alignTop="@+id/number_label"
-            android:layout_alignStart="@+id/fee_value" />
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/staus_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/passenger_value"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginBottom="24dp"
+            android:text="@string/status_label"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_value"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_alignBottom="@+id/staus_label"
+            android:layout_alignStart="@+id/passenger_value" />
+
     </RelativeLayout>
 </LinearLayout>

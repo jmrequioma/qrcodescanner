@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/rootRL"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
+    android:background="@drawable/mobl1">
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/btnScan"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Scan QR Code"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="365dp"
+        android:background="@color/colorAccent"
+        android:elevation="0dp"
         android:onClick="onClick"
-        android:id="@+id/button" />
+        android:text="Scan QR Code"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorPrimaryLight"
+        android:elevation="0dp"
+        android:text="Quit"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
 </LinearLayout>

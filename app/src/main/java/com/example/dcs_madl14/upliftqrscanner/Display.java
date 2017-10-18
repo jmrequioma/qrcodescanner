@@ -26,6 +26,12 @@ public class Display extends Activity {
     Button btnScan;
     TextView status_value;
     TextView passenger_value;
+    TextView porter_value;
+    TextView via_value;
+    TextView destination_value;
+    TextView bus_value;
+    TextView loading_value;
+    TextView weight_value;
     TextView fee_value;
     TextView number_value;
     String qrCode;
@@ -34,10 +40,16 @@ public class Display extends Activity {
         //status_value.setText("hellow");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        status_value = (TextView) findViewById(R.id.status_value);
+        status_value = (TextView) findViewById(R.id.porter_value);
         passenger_value = (TextView) findViewById(R.id.passenger_value);
+        porter_value = (TextView) findViewById(R.id.porter_value);
+        via_value = (TextView) findViewById(R.id.via_value);
+        destination_value = (TextView) findViewById(R.id.destination_value);
+        bus_value = (TextView) findViewById(R.id.bus_value);
+        loading_value = (TextView) findViewById(R.id.loading_value);
+        weight_value = (TextView) findViewById(R.id.weight_value);
         fee_value = (TextView) findViewById(R.id.fee_value);
-        number_value = (TextView) findViewById(R.id.number_value);
+        number_value = (TextView) findViewById(R.id.destination_value);
         btnScan = (Button) findViewById(R.id.btnScan);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +135,22 @@ public class Display extends Activity {
     }
 
     private String displayName(String response) {
+        String passenger = "";
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+            passenger = object.getString("first_name");
+            passenger = passenger + " " + object.getString("last_name");
+            Log.i("hello", passenger);
+            //JSONArray photos = new JSONTokener(response).nextValue();
+            //JSONArray.
+        } catch (JSONException e) {
+            // Appropriate error handling code
+            Log.e("Display", e.getMessage(), e);
+        }
+        return passenger;
+    }
+
+    private String displayPorter(String response) {
         String passenger = "";
         try {
             JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
