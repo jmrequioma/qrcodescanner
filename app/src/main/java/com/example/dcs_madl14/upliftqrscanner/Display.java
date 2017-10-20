@@ -33,14 +33,13 @@ public class Display extends Activity {
     TextView loading_value;
     TextView weight_value;
     TextView fee_value;
-    TextView number_value;
     String qrCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        status_value = (TextView) findViewById(R.id.porter_value);
+        status_value = (TextView) findViewById(R.id.status_value);
         passenger_value = (TextView) findViewById(R.id.passenger_value);
         porter_value = (TextView) findViewById(R.id.porter_value);
         via_value = (TextView) findViewById(R.id.via_value);
@@ -49,11 +48,12 @@ public class Display extends Activity {
         loading_value = (TextView) findViewById(R.id.loading_value);
         weight_value = (TextView) findViewById(R.id.weight_value);
         fee_value = (TextView) findViewById(R.id.fee_value);
-        number_value = (TextView) findViewById(R.id.destination_value);
         btnScan = (Button) findViewById(R.id.btnScan);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
@@ -77,6 +77,7 @@ public class Display extends Activity {
                 String password = "Dh0ngFh3l";
                 String authString = username + ":" + password;
                 URL url = new URL("https://baggage-loading-system.herokuapp.com/passenger/" + qrCode);
+                Log.i("qr code:", qrCode);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 String encoding = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
                 urlConnection.setRequestMethod("GET");
@@ -109,10 +110,12 @@ public class Display extends Activity {
             Log.i("INFO", response);
             String passenger = displayName(response);
             String fee = displayFee(response);
-            String number = displayNumber(response);
+            String lBay = displayLoadingBay(response);
+            String weight = displayWeight(response);
             passenger_value.setText(passenger);
             fee_value.setText(fee);
-            number_value.setText(number);
+            loading_value.setText(lBay);
+            weight_value.setText(weight);
         }
 
     }
@@ -181,19 +184,34 @@ public class Display extends Activity {
         return fee;
     }
 
-    private String displayNumber(String response) {
-        String cNum = "";
+    private String displayLoadingBay(String response) {
+        String lBay = "";
         try {
             JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
-            cNum = object.getString("contact_number");
-            Log.i("hello", cNum);
+            lBay = object.getString("loading_bay_id");
+            Log.i("hello", lBay);
             //JSONArray photos = new JSONTokener(response).nextValue();
             //JSONArray.
         } catch (JSONException e) {
             // Appropriate error handling code
             Log.e("Display", e.getMessage(), e);
         }
-        return cNum;
+        return lBay;
+    }
+
+    private String displayWeight(String response) {
+        String weight = "";
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+            weight = object.getString("baggage_weight");
+            Log.i("hello", weight);
+            //JSONArray photos = new JSONTokener(response).nextValue();
+            //JSONArray.
+        } catch (JSONException e) {
+            // Appropriate error handling code
+            Log.e("Display", e.getMessage(), e);
+        }
+        return weight;
     }
 
     private class requestStatus extends AsyncTask<Void, Void, String> {

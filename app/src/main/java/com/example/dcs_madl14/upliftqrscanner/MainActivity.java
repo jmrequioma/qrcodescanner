@@ -73,7 +73,6 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
     @Override
     protected void onPause() {
         super.onPause();
-        //mScannerView.stopCamera();
     }
 
     @Override
@@ -81,7 +80,24 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
         super.onStop();
         mScannerView.stopCamera();
     }
+/*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        mScannerView = new ZXingScannerView(this);
+        setContentView(mScannerView);
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
+        continueScan();
 
+
+    }
+*/
+    @Override
+    public void onBackPressed() {
+        //do something
+    }
     private void continueScan() {
         mScannerView.resumeCameraPreview(this);
     }

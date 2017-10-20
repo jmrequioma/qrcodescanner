@@ -6,8 +6,7 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingBottom="0dp"
-    android:background="@drawable/mobl1">
+    android:paddingBottom="0dp">
 
     <Button
         android:id="@+id/btnScan"
@@ -31,7 +30,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="15dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="@color/colorPrimary"
         android:elevation="0dp"
         android:text="Quit"
         android:textColor="@color/colorPrimaryDark"
