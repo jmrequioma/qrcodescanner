@@ -34,6 +34,7 @@ public class Display extends Activity {
     TextView weight_value;
     TextView fee_value;
     String qrCode;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
@@ -67,6 +68,7 @@ public class Display extends Activity {
         super.onStart();
         new requestPassenger().execute();
         new requestStatus().execute();
+        new requestLoadingBay().execute();
     }
 
     private class requestPassenger extends AsyncTask<Void, Void, String> {
@@ -102,6 +104,11 @@ public class Display extends Activity {
         }
 
         @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
         protected void onPostExecute(String response) {
             if(response == null) {
                 response = "THERE WAS AN ERROR";
@@ -112,48 +119,41 @@ public class Display extends Activity {
             String fee = displayFee(response);
             String lBay = displayLoadingBay(response);
             String weight = displayWeight(response);
+            id = lBay;
             passenger_value.setText(passenger);
             fee_value.setText(fee);
-            loading_value.setText(lBay);
+            //loading_value.setText(lBay);
             weight_value.setText(weight);
         }
 
     }
     private String displayStatus(String response) {
+        int loadedCnt = 0;
+        int unloadedCnt = 0;
         String status = "";
+        String count = "";
         try {
             JSONArray array = new JSONArray(response);
             for(int i = 0; i < array.length(); i++) {
                 JSONObject explrObject = array.getJSONObject(i);
-                status += explrObject.getString("status") + ", ";
+                status = explrObject.getString("status");
+                if (status.equals("LOADED")) {
+                    loadedCnt++;
+                } else {
+                    unloadedCnt++;
+                }
             }
-            Log.i("hello", status);
+            //Log.i("hello", status);
             //JSONArray photos = new JSONTokener(response).nextValue();
             //JSONArray.
         } catch (JSONException e) {
             // Appropriate error handling code
             Log.e("Display", e.getMessage(), e);
         }
-        return status;
+        return String.valueOf(loadedCnt) + "/" + String.valueOf(loadedCnt + unloadedCnt);
     }
 
     private String displayName(String response) {
-        String passenger = "";
-        try {
-            JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
-            passenger = object.getString("first_name");
-            passenger = passenger + " " + object.getString("last_name");
-            Log.i("hello", passenger);
-            //JSONArray photos = new JSONTokener(response).nextValue();
-            //JSONArray.
-        } catch (JSONException e) {
-            // Appropriate error handling code
-            Log.e("Display", e.getMessage(), e);
-        }
-        return passenger;
-    }
-
-    private String displayPorter(String response) {
         String passenger = "";
         try {
             JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
@@ -255,6 +255,79 @@ public class Display extends Activity {
             Log.i("INFO", response);
             String status = displayStatus(response);
             status_value.setText(status);
+        }
+    }
+
+    private class requestLoadingBay extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                String username = "cmsc131";
+                String password = "Dh0ngFh3l";
+                String authString = username + ":" + password;
+                URL url = new URL("https://baggage-loading-system.herokuapp.com/loading-bay/" + id);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                String encoding = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setRequestProperty("Authorization", "Basic " + encoding);
+                try {
+                    InputStream content = urlConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((content)));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    return stringBuilder.toString();
+                }
+                finally {
+                    urlConnection.disconnect();
+                }
+            } catch (Exception e) {
+                Log.e("Display", e.getMessage(), e);
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            if (response == null) {
+                response = "THERE WAS AN ERROR";
+            }
+            //progressBar.setVisibility(View.GONE);
+            Log.i("INFO", response);
+            displayLoadingBay(response);
+        }
+    }
+
+    private void displayLoadingInfo(String response) {
+        int id;
+        String via, destination, bus, lBayName;
+        try {
+            JSONArray array = new JSONArray(response);
+            for(int i = 0; i < array.length(); i++) {
+                JSONObject explrObject = array.getJSONObject(i);
+
+                id = explrObject.optInt("id");   // look for specific id
+                if (id == Integer.valueOf(this.id)) {
+                    via = explrObject.getString("via");
+                    destination = explrObject.getString("destination");
+                    bus = explrObject.getString("via");
+                    lBayName = explrObject.getString("loading_bay_name");
+
+                    via_value.setText(via);
+                    destination_value.setText(destination);
+                    bus_value.setText(bus);
+                    loading_value.setText(lBayName);
+                }
+            }
+
+            //JSONArray photos = new JSONTokener(response).nextValue();
+            //JSONArray.
+        } catch (JSONException e) {
+            // Appropriate error handling code
+            Log.e("Display", e.getMessage(), e);
         }
     }
 }
