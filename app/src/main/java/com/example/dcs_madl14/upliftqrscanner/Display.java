@@ -26,7 +26,6 @@ public class Display extends Activity {
     Button btnScan;
     TextView status_value;
     TextView passenger_value;
-    TextView porter_value;
     TextView via_value;
     TextView destination_value;
     TextView bus_value;
@@ -42,7 +41,6 @@ public class Display extends Activity {
         setContentView(R.layout.activity_display);
         status_value = (TextView) findViewById(R.id.status_value);
         passenger_value = (TextView) findViewById(R.id.passenger_value);
-        porter_value = (TextView) findViewById(R.id.porter_value);
         via_value = (TextView) findViewById(R.id.via_value);
         destination_value = (TextView) findViewById(R.id.destination_value);
         bus_value = (TextView) findViewById(R.id.bus_value);
@@ -131,7 +129,6 @@ public class Display extends Activity {
         int loadedCnt = 0;
         int unloadedCnt = 0;
         String status = "";
-        String count = "";
         try {
             JSONArray array = new JSONArray(response);
             for(int i = 0; i < array.length(); i++) {
@@ -297,7 +294,7 @@ public class Display extends Activity {
             }
             //progressBar.setVisibility(View.GONE);
             Log.i("INFO", response);
-            displayLoadingBay(response);
+            displayLoadingInfo(response);
         }
     }
 
@@ -305,24 +302,15 @@ public class Display extends Activity {
         int id;
         String via, destination, bus, lBayName;
         try {
-            JSONArray array = new JSONArray(response);
-            for(int i = 0; i < array.length(); i++) {
-                JSONObject explrObject = array.getJSONObject(i);
-
-                id = explrObject.optInt("id");   // look for specific id
-                if (id == Integer.valueOf(this.id)) {
-                    via = explrObject.getString("via");
-                    destination = explrObject.getString("destination");
-                    bus = explrObject.getString("via");
-                    lBayName = explrObject.getString("loading_bay_name");
-
-                    via_value.setText(via);
-                    destination_value.setText(destination);
-                    bus_value.setText(bus);
-                    loading_value.setText(lBayName);
-                }
-            }
-
+            JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
+            via = object.getString("via");
+            via_value.setText(via);
+            destination = object.getString("destination");
+            destination_value.setText(destination);
+            bus = object.getString("bus_company");
+            bus_value.setText(bus);
+            lBayName = object.getString("loading_bay_name");
+            loading_value.setText(lBayName);
             //JSONArray photos = new JSONTokener(response).nextValue();
             //JSONArray.
         } catch (JSONException e) {

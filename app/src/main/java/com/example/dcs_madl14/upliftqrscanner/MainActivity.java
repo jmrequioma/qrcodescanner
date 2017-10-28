@@ -94,10 +94,6 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
 
     }
 */
-    @Override
-    public void onBackPressed() {
-        //do something
-    }
     private void continueScan() {
         mScannerView.resumeCameraPreview(this);
     }
