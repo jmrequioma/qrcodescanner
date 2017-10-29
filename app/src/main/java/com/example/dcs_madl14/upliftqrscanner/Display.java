@@ -37,6 +37,7 @@ public class Display extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
+        // link textviews to the their respective ids from the xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         status_value = (TextView) findViewById(R.id.status_value);
@@ -68,7 +69,8 @@ public class Display extends Activity {
         new requestStatus().execute();
         new requestLoadingBay().execute();
     }
-
+    
+    // retrieves passenger information
     private class requestPassenger extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
