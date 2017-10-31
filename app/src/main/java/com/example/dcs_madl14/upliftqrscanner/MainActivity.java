@@ -45,7 +45,8 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
         */
 
     }
-
+    // this function asks the user to allow the permission to use the camera
+    // not called yet
     private void askPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
             // don't have permission
@@ -55,12 +56,15 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
             Toast.makeText(this, "Permission is already granted", Toast.LENGTH_SHORT).show();
         }
     }
-
+    
+    // test function to check the results of the permssion
+    // just a stub for now
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
     }
-
+    
+    // function that is called by the scan button, this function starts the scanner
     public void onClick(View v) {
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
@@ -97,7 +101,8 @@ public class MainActivity extends Activity implements ZXingScannerView.ResultHan
     private void continueScan() {
         mScannerView.resumeCameraPreview(this);
     }
-
+    
+    // function that handles the result taken from scanning the qr code
     @Override
     public void handleResult(Result result) {
         // we can use this to fetch data from database

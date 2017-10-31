@@ -37,6 +37,7 @@ public class Display extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
+        // link textviews to the their respective ids from the xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         status_value = (TextView) findViewById(R.id.status_value);
@@ -68,7 +69,8 @@ public class Display extends Activity {
         new requestStatus().execute();
         new requestLoadingBay().execute();
     }
-
+    
+    // retrieves passenger information
     private class requestPassenger extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
@@ -76,7 +78,7 @@ public class Display extends Activity {
                 String username = "cmsc131";
                 String password = "Dh0ngFh3l";
                 String authString = username + ":" + password;
-                URL url = new URL("https://baggage-loading-system.herokuapp.com/passenger/" + qrCode);
+                URL url = new URL("https://baggage-loading-system.herokuapp.com/api/passenger/" + qrCode);
                 Log.i("qr code:", qrCode);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 String encoding = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
@@ -218,7 +220,7 @@ public class Display extends Activity {
                 String username = "cmsc131";
                 String password = "Dh0ngFh3l";
                 String authString = username + ":" + password;
-                URL url = new URL("https://baggage-loading-system.herokuapp.com/passenger/" + qrCode + "/baggage");
+                URL url = new URL("https://baggage-loading-system.herokuapp.com/api/passenger/" + qrCode + "/baggage");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 String encoding = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
                 urlConnection.setRequestMethod("GET");
@@ -262,7 +264,7 @@ public class Display extends Activity {
                 String username = "cmsc131";
                 String password = "Dh0ngFh3l";
                 String authString = username + ":" + password;
-                URL url = new URL("https://baggage-loading-system.herokuapp.com/loading-bay/" + id);
+                URL url = new URL("https://baggage-loading-system.herokuapp.com/api/loading-bay/" + id);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 String encoding = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
                 urlConnection.setRequestMethod("GET");
@@ -304,15 +306,13 @@ public class Display extends Activity {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
             via = object.getString("via");
-            via_value.setText(via);
             destination = object.getString("destination");
-            destination_value.setText(destination);
             bus = object.getString("bus_company");
-            bus_value.setText(bus);
             lBayName = object.getString("loading_bay_name");
+            via_value.setText(via);
+            destination_value.setText(destination);
+            bus_value.setText(bus);
             loading_value.setText(lBayName);
-            //JSONArray photos = new JSONTokener(response).nextValue();
-            //JSONArray.
         } catch (JSONException e) {
             // Appropriate error handling code
             Log.e("Display", e.getMessage(), e);
