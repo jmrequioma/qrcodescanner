@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Display"></activity>
+        <activity android:name=".Scanner"></activity>
     </application>
 
 </manifest>

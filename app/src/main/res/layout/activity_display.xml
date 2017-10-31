@@ -187,7 +187,17 @@
             android:layout_alignStart="@+id/passenger_value"
             android:text="@string/via_value"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnScan"
+            android:layout_alignEnd="@+id/status_value"
+            android:onClick="refreshStat"
+            android:text="Refresh"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
