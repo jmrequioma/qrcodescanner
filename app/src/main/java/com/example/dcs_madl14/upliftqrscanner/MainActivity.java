@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,93 +25,17 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  * Created by dcs-madl14 on 10/10/17.
  */
 
-public class MainActivity extends Activity implements ZXingScannerView.ResultHandler {
+public class MainActivity extends Activity {
 
-    private ZXingScannerView mScannerView;
-    Button CameraPermissionButton;
-    private final int CAMERA_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*
-        CameraPermissionButton = (Button) findViewById(R.id.CameraPermissionButton);
-        CameraPermissionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                askPermission(Manifest.permission.ACCESS_FINE_LOCATION, CAMERA_REQUEST_CODE);
-            }
-        });
-        */
-
     }
-    // this function asks the user to allow the permission to use the camera
-    // not called yet
-    private void askPermission(String permission, int requestCode) {
-        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-            // don't have permission
-            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
-        } else {
-            // have permission
-            Toast.makeText(this, "Permission is already granted", Toast.LENGTH_SHORT).show();
-        }
-    }
-    
-    // test function to check the results of the permssion
-    // just a stub for now
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
-    }
-    
-    // function that is called by the scan button, this function starts the scanner
     public void onClick(View v) {
-        mScannerView = new ZXingScannerView(this);
-        setContentView(mScannerView);
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
-        //Intent i = new Intent(MainActivity.this, Display.class);
-        //startActivity(i);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mScannerView.stopCamera();
-    }
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        mScannerView = new ZXingScannerView(this);
-        setContentView(mScannerView);
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
-        continueScan();
-
-
-    }
-*/
-    private void continueScan() {
-        mScannerView.resumeCameraPreview(this);
-    }
-    
-    // function that handles the result taken from scanning the qr code
-    @Override
-    public void handleResult(Result result) {
-        // we can use this to fetch data from database
-        String qrCodeVal = result.getText();
-        Log.v("handleResult", qrCodeVal);
-        Intent i = new Intent(MainActivity.this, Display.class);
+        Intent i = new Intent(MainActivity.this, Scanner.class);
         // pass qrCode value
-        i.putExtra("status", qrCodeVal);
         startActivity(i);
     }
 }

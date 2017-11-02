@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.app.ProgressDialog;
 
 
 import java.io.BufferedReader;
@@ -32,8 +33,12 @@ public class Display extends Activity {
     TextView loading_value;
     TextView weight_value;
     TextView fee_value;
+
     String qrCode;
     String id;
+
+    final String CURR = "Php";
+    final String WEIGHT_UNIT = "kg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
@@ -61,7 +66,6 @@ public class Display extends Activity {
         qrCode = i.getStringExtra("status");
 
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -105,7 +109,6 @@ public class Display extends Activity {
 
         @Override
         protected void onPreExecute() {
-
         }
 
         @Override
@@ -116,9 +119,9 @@ public class Display extends Activity {
             //progressBar.setVisibility(View.GONE);
             Log.i("INFO", response);
             String passenger = displayName(response);
-            String fee = displayFee(response);
+            String fee = CURR + " " + displayFee(response);
             String lBay = displayLoadingBay(response);
-            String weight = displayWeight(response);
+            String weight = displayWeight(response) + " " + WEIGHT_UNIT;
             id = lBay;
             passenger_value.setText(passenger);
             fee_value.setText(fee);
@@ -317,5 +320,12 @@ public class Display extends Activity {
             // Appropriate error handling code
             Log.e("Display", e.getMessage(), e);
         }
+    }
+
+    // retrieves data from database again
+    public void refreshStat(View v) {
+        new requestPassenger().execute();
+        new requestStatus().execute();
+        new requestLoadingBay().execute();
     }
 }
