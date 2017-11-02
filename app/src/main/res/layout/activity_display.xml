@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundDisplay" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,19 +14,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="16dp"
+            android:layout_toEndOf="@+id/destination_label"
+            android:background="@drawable/scan_again"
             android:onClick="onClick"
             android:text="@string/scan_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/destination_label"
-            android:layout_alignTop="@+id/passenger_value"
+            android:layout_above="@+id/via_label"
+            android:layout_alignStart="@+id/via_label"
+            android:layout_marginBottom="20dp"
             android:text="@string/passenger_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -32,10 +38,11 @@
             android:id="@+id/passenger_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/destination_value"
-            android:layout_below="@+id/staus_label"
-            android:layout_marginTop="27dp"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignStart="@+id/via_value"
             android:text="@string/passenger_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -43,10 +50,10 @@
             android:id="@+id/destination_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/via_label"
-            android:layout_marginTop="23dp"
-            android:layout_toStartOf="@+id/btnScan"
+            android:layout_above="@+id/bus_label"
+            android:layout_alignStart="@+id/bus_label"
             android:text="@string/destination_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -54,11 +61,11 @@
             android:id="@+id/destination_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/destination_label"
-            android:layout_alignBottom="@+id/destination_label"
-            android:layout_marginStart="36dp"
-            android:layout_toEndOf="@+id/bus_label"
+            android:layout_alignTop="@+id/destination_label"
+            android:layout_marginStart="34dp"
+            android:layout_toEndOf="@+id/btnScan"
             android:text="@string/destination_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -66,10 +73,11 @@
             android:id="@+id/bus_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/destination_label"
-            android:layout_below="@+id/destination_label"
-            android:layout_marginTop="23dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="17dp"
             android:text="@string/bus_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -77,9 +85,10 @@
             android:id="@+id/bus_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/bus_label"
-            android:layout_alignStart="@+id/destination_value"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:text="@string/bus_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -89,8 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/bus_label"
             android:layout_below="@+id/bus_label"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="11dp"
             android:text="@string/loading_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -101,6 +111,7 @@
             android:layout_alignBottom="@+id/loading_label"
             android:layout_alignStart="@+id/bus_value"
             android:text="@string/loading_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -112,6 +123,7 @@
             android:layout_below="@+id/loading_label"
             android:layout_marginTop="24dp"
             android:text="@string/weight_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -123,6 +135,7 @@
             android:layout_alignBottom="@+id/weight_label"
             android:layout_alignStart="@+id/loading_value"
             android:text="@string/weight_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -134,6 +147,7 @@
             android:layout_below="@+id/weight_label"
             android:layout_marginTop="21dp"
             android:text="@string/fee_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -144,6 +158,7 @@
             android:layout_alignStart="@+id/weight_value"
             android:layout_alignTop="@+id/fee_label"
             android:text="@string/fee_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -152,8 +167,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/textView"
             android:text="@string/status_label"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -162,8 +177,8 @@
             android:id="@+id/status_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/staus_label"
-            android:layout_alignStart="@+id/passenger_value"
+            android:layout_above="@+id/imageView"
+            android:layout_toStartOf="@+id/bus_value"
             android:text="@string/status_value"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -172,10 +187,11 @@
             android:id="@+id/via_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="20dp"
+            android:layout_above="@+id/destination_value"
+            android:layout_alignStart="@+id/destination_label"
+            android:layout_marginBottom="11dp"
             android:text="@string/via_label"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -183,9 +199,10 @@
             android:id="@+id/via_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/via_label"
-            android:layout_alignStart="@+id/passenger_value"
+            android:layout_alignStart="@+id/destination_value"
+            android:layout_alignTop="@+id/via_label"
             android:text="@string/via_value"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -194,10 +211,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/btnScan"
-            android:layout_alignEnd="@+id/status_value"
+            android:layout_toEndOf="@+id/loading_label"
+            android:background="@drawable/scan_again"
             android:onClick="refreshStat"
             android:text="Refresh"
+            android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/staus_label"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/line" />
 
     </RelativeLayout>
 
