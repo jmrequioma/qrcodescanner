@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundDisplay" >
+    android:background="@drawable/background_display" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -224,7 +224,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/staus_label"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/line" />
+            android:src="@drawable/line" />
 
     </RelativeLayout>
 
