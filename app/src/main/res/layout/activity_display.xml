@@ -109,8 +109,9 @@
             android:id="@+id/loading_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:layout_alignBottom="@+id/loading_label"
-            android:layout_alignEnd="@+id/destination_value"
+            android:layout_alignStart="@+id/bus_value"
             android:text="@string/loading_value"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
@@ -223,8 +224,8 @@
             android:layout_alignEnd="@+id/via_label"
             android:layout_alignParentTop="true"
             android:layout_marginTop="18dp"
-            android:onClick="refreshStat"
             android:background="@color/colorPrimaryDark"
+            android:onClick="refreshStat"
             android:src="@drawable/ic_refresh" />
 
         <ImageView
