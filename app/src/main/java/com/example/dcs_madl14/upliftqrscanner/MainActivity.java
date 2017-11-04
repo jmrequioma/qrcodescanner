@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
@@ -26,11 +27,16 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  */
 
 public class MainActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView heading = (TextView) findViewById(R.id.title);
+        Button scan = (Button) findViewById(R.id.btnScan);
+        Typeface montserratBold = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Bold.otf");
+        heading.setTypeface(montserratBold);
+        Typeface montserratReg = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Regular.otf");
+        scan.setTypeface(montserratReg);
     }
 
     public void onClick(View v) {

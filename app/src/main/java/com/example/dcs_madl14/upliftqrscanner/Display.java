@@ -1,12 +1,15 @@
 package com.example.dcs_madl14.upliftqrscanner;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.ProgressDialog;
 
@@ -24,7 +27,16 @@ import android.content.Intent;
  */
 
 public class Display extends Activity {
+    ImageButton btnRefresh;
     Button btnScan;
+    TextView status_label;
+    TextView passenger_label;
+    TextView via_label;
+    TextView destination_label;
+    TextView bus_label;
+    TextView loading_label;
+    TextView weight_label;
+    TextView fee_label;
     TextView status_value;
     TextView passenger_value;
     TextView via_value;
@@ -34,6 +46,7 @@ public class Display extends Activity {
     TextView weight_value;
     TextView fee_value;
 
+    ImageView check;
     String qrCode;
     String id;
 
@@ -45,7 +58,15 @@ public class Display extends Activity {
         // link textviews to the their respective ids from the xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+        status_label = (TextView) findViewById(R.id.status_label);
         status_value = (TextView) findViewById(R.id.status_value);
+        passenger_label = (TextView) findViewById(R.id.passenger_label);
+        via_label = (TextView) findViewById(R.id.via_label);
+        destination_label = (TextView) findViewById(R.id.destination_label);
+        bus_label = (TextView) findViewById(R.id.bus_label);
+        loading_label = (TextView) findViewById(R.id.loading_label);
+        weight_label = (TextView) findViewById(R.id.weight_label);
+        fee_label = (TextView) findViewById(R.id.fee_label);
         passenger_value = (TextView) findViewById(R.id.passenger_value);
         via_value = (TextView) findViewById(R.id.via_value);
         destination_value = (TextView) findViewById(R.id.destination_value);
@@ -62,8 +83,31 @@ public class Display extends Activity {
                 finish();
             }
         });
+        check = (ImageView) findViewById(R.id.check);
+        check.setVisibility(View.INVISIBLE);
+        btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
+        Typeface montserratBold = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Bold.otf");
+        Typeface montserratReg = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Regular.otf");
+        status_label.setTypeface(montserratBold);
+        status_value.setTypeface(montserratBold);
+        passenger_label.setTypeface(montserratReg);
+        via_label.setTypeface(montserratReg);
+        destination_label.setTypeface(montserratReg);
+        bus_label.setTypeface(montserratReg);
+        loading_label.setTypeface(montserratReg);
+        weight_label.setTypeface(montserratReg);
+        fee_label.setTypeface(montserratReg);
+        passenger_value.setTypeface(montserratBold);
+        via_value.setTypeface(montserratBold);
+        destination_value.setTypeface(montserratBold);
+        bus_value.setTypeface(montserratBold);
+        loading_value.setTypeface(montserratBold);
+        weight_value.setTypeface(montserratBold);
+        fee_value.setTypeface(montserratBold);
+        btnScan.setTypeface(montserratReg);
         Intent i = getIntent();
         qrCode = i.getStringExtra("status");
+
 
     }
     @Override
@@ -144,6 +188,9 @@ public class Display extends Activity {
                 } else {
                     unloadedCnt++;
                 }
+            }
+            if (loadedCnt == unloadedCnt) {
+                check.setVisibility(View.VISIBLE);
             }
             //Log.i("hello", status);
             //JSONArray photos = new JSONTokener(response).nextValue();
