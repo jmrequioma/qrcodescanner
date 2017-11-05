@@ -18,4 +18,6 @@
     <string name="status_label">LOADED</string>
     <string name="status_value">0/0</string>
     <string name="action_refresh">Refresh</string>
+    <string name="invalid_msg">Invalid QR Code</string>
+    <string name="try_again">Try Again</string>
 </resources>

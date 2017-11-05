@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.app.ProgressDialog;
 
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -28,6 +30,7 @@ import android.content.Intent;
 
 public class Display extends Activity {
     ImageButton btnRefresh;
+    ProgressDialog dialog;
     Button btnScan;
     TextView status_label;
     TextView passenger_label;
@@ -58,6 +61,7 @@ public class Display extends Activity {
         // link textviews to the their respective ids from the xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+        dialog = new ProgressDialog(Display.this);
         status_label = (TextView) findViewById(R.id.status_label);
         status_value = (TextView) findViewById(R.id.status_value);
         passenger_label = (TextView) findViewById(R.id.passenger_label);
@@ -107,15 +111,25 @@ public class Display extends Activity {
         btnScan.setTypeface(montserratReg);
         Intent i = getIntent();
         qrCode = i.getStringExtra("status");
+        // exectute here so it's faster
+        try {
+            new requestPassenger().execute();
+            new requestStatus().execute();
+            new requestLoadingBay().execute();
+        } catch (Exception e) {
+            Intent intent = new Intent(Display.this, ErrorDisplay.class);
+            startActivity(intent);
+        }
+
 
 
     }
     @Override
     protected void onStart() {
         super.onStart();
-        new requestPassenger().execute();
-        new requestStatus().execute();
-        new requestLoadingBay().execute();
+        //new requestPassenger().execute();
+        //new requestStatus().execute();
+        //new requestLoadingBay().execute();
     }
     
     // retrieves passenger information
@@ -142,6 +156,8 @@ public class Display extends Activity {
                     }
                     bufferedReader.close();
                     return stringBuilder.toString();
+                } catch (FileNotFoundException fnfe) {
+                    return null;
                 } finally {
                     urlConnection.disconnect();
                 }
@@ -153,24 +169,28 @@ public class Display extends Activity {
 
         @Override
         protected void onPreExecute() {
+            //dialog.setMessage("Processing...");
+            //dialog.show();
         }
 
         @Override
         protected void onPostExecute(String response) {
             if(response == null) {
                 response = "THERE WAS AN ERROR";
+            } else {
+                String passenger = displayName(response);
+                String fee = CURR + " " + displayFee(response);
+                String lBay = displayLoadingBay(response);
+                String weight = displayWeight(response) + " " + WEIGHT_UNIT;
+                id = lBay;
+                passenger_value.setText(passenger);
+                fee_value.setText(fee);
+                //loading_value.setText(lBay);
+                weight_value.setText(weight);
+                dialog.dismiss();
             }
             //progressBar.setVisibility(View.GONE);
             Log.i("INFO", response);
-            String passenger = displayName(response);
-            String fee = CURR + " " + displayFee(response);
-            String lBay = displayLoadingBay(response);
-            String weight = displayWeight(response) + " " + WEIGHT_UNIT;
-            id = lBay;
-            passenger_value.setText(passenger);
-            fee_value.setText(fee);
-            //loading_value.setText(lBay);
-            weight_value.setText(weight);
         }
 
     }
@@ -285,12 +305,16 @@ public class Display extends Activity {
                     }
                     bufferedReader.close();
                     return stringBuilder.toString();
-                }
-                finally {
+                } catch (Exception e) {
+                    return null;
+                } finally {
                     urlConnection.disconnect();
                 }
             } catch (Exception e) {
+
                 Log.e("Display", e.getMessage(), e);
+                //Intent i = new Intent(Display.this, ErrorDisplay.class);
+                //startActivity(i);
                 return null;
             }
         }
@@ -299,11 +323,14 @@ public class Display extends Activity {
         protected void onPostExecute(String response) {
             if (response == null) {
                 response = "THERE WAS AN ERROR";
+
+            } else {
+                String status = displayStatus(response);
+                status_value.setText(status);
             }
             //progressBar.setVisibility(View.GONE);
             Log.i("INFO", response);
-            String status = displayStatus(response);
-            status_value.setText(status);
+
         }
     }
 
@@ -329,12 +356,15 @@ public class Display extends Activity {
                     }
                     bufferedReader.close();
                     return stringBuilder.toString();
-                }
-                finally {
+                } catch (Exception e) {
+                    return null;
+                } finally {
                     urlConnection.disconnect();
                 }
             } catch (Exception e) {
                 Log.e("Display", e.getMessage(), e);
+                //Intent i = new Intent(Display.this, ErrorDisplay.class);
+                //startActivity(i);
                 return null;
             }
         }
@@ -343,10 +373,25 @@ public class Display extends Activity {
         protected void onPostExecute(String response) {
             if (response == null) {
                 response = "THERE WAS AN ERROR";
+                dialog.dismiss();
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+                Intent i = new Intent(Display.this, ErrorDisplay.class);
+                startActivity(i);
+            } else {
+                displayLoadingInfo(response);
+                dialog.dismiss();
             }
             //progressBar.setVisibility(View.GONE);
             Log.i("INFO", response);
-            displayLoadingInfo(response);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setMessage("Processing...");
+            dialog.show();
         }
     }
 

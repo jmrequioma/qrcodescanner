@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".Display"></activity>
         <activity android:name=".Scanner"></activity>
+        <activity android:name=".ErrorDisplay"></activity>
     </application>
 
 </manifest>
