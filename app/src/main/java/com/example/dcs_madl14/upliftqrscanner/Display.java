@@ -209,9 +209,9 @@ public class Display extends Activity {
                     unloadedCnt++;
                 }
             }
-            if (loadedCnt == unloadedCnt) {
+            //if (loadedCnt == unloadedCnt) {
                 check.setVisibility(View.VISIBLE);
-            }
+            //}
             //Log.i("hello", status);
             //JSONArray photos = new JSONTokener(response).nextValue();
             //JSONArray.

@@ -13,9 +13,9 @@
             android:id="@+id/btnScan"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/fee_label"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/scan_again"
             android:onClick="onClick"
             android:text="@string/scan_label"
@@ -39,11 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/via_label"
-            android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@+id/btnScan"
+            android:layout_marginBottom="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/status_label"
             android:text="@string/passenger_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -65,7 +66,7 @@
             android:layout_alignTop="@+id/destination_label"
             android:text="@string/destination_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -86,10 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/destination_value"
             android:layout_below="@+id/destination_label"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="25dp"
             android:text="@string/bus_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -108,12 +109,12 @@
             android:id="@+id/loading_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
             android:layout_alignBottom="@+id/loading_label"
             android:layout_alignStart="@+id/bus_value"
+            android:gravity="center"
             android:text="@string/loading_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -137,7 +138,7 @@
             android:layout_alignStart="@+id/loading_value"
             android:text="@string/weight_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -158,21 +159,21 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/fee_label"
             android:layout_alignBottom="@+id/fee_label"
-            android:layout_toEndOf="@+id/btnScan"
+            android:layout_alignStart="@+id/weight_value"
             android:text="@string/fee_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/status_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"
-            android:layout_toEndOf="@+id/weight_label"
+            android:layout_alignTop="@+id/btnRefresh"
+            android:layout_marginTop="23dp"
+            android:layout_toEndOf="@+id/passenger_label"
             android:text="@string/status_label"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -180,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/line"
-            android:layout_alignEnd="@+id/weight_value"
+            android:layout_alignStart="@+id/passenger_value"
             android:text="@string/status_value"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -205,7 +206,7 @@
             android:layout_alignStart="@+id/destination_value"
             android:text="@string/via_value"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -231,8 +232,8 @@
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/passenger_value"
             android:layout_alignTop="@+id/status_value"
-            android:layout_toEndOf="@+id/fee_value"
             android:src="@drawable/ic_check" />
 
     </RelativeLayout>
