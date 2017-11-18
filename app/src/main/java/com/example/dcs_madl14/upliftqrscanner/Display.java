@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.json.*;
 import android.content.Intent;
 
@@ -113,27 +116,25 @@ public class Display extends Activity {
         qrCode = i.getStringExtra("status");
         // exectute here so it's faster
         try {
-            new requestPassenger().execute();
-            new requestStatus().execute();
-            new requestLoadingBay().execute();
+            new RequestPassenger().execute();
+            new RequestStatus().execute();
+            new RequestLoadingBay().execute();
         } catch (Exception e) {
             Intent intent = new Intent(Display.this, ErrorDisplay.class);
             startActivity(intent);
         }
-
-
-
     }
     @Override
     protected void onStart() {
         super.onStart();
-        //new requestPassenger().execute();
-        //new requestStatus().execute();
-        //new requestLoadingBay().execute();
+        callAsynchronousTask();
+        //new RequestPassenger().execute();
+        //new RequestStatus().execute();
+        //new RequestLoadingBay().execute();
     }
     
     // retrieves passenger information
-    private class requestPassenger extends AsyncTask<Void, Void, String> {
+    private class RequestPassenger extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
             try {
@@ -209,9 +210,9 @@ public class Display extends Activity {
                     unloadedCnt++;
                 }
             }
-            //if (loadedCnt == unloadedCnt) {
+            if (loadedCnt == unloadedCnt) {
                 check.setVisibility(View.VISIBLE);
-            //}
+            }
             //Log.i("hello", status);
             //JSONArray photos = new JSONTokener(response).nextValue();
             //JSONArray.
@@ -283,7 +284,7 @@ public class Display extends Activity {
         return weight;
     }
 
-    private class requestStatus extends AsyncTask<Void, Void, String> {
+    private class RequestStatus extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
             try {
@@ -334,7 +335,7 @@ public class Display extends Activity {
         }
     }
 
-    private class requestLoadingBay extends AsyncTask<Void, Void, String> {
+    private class RequestLoadingBay extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
             try {
@@ -416,8 +417,31 @@ public class Display extends Activity {
 
     // retrieves data from database again
     public void refreshStat(View v) {
-        new requestPassenger().execute();
-        new requestStatus().execute();
-        new requestLoadingBay().execute();
+        new RequestPassenger().execute();
+        new RequestStatus().execute();
+        new RequestLoadingBay().execute();
+    }
+
+    public void callAsynchronousTask() {
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask doAsynchronousTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        try {
+                            RequestStatus requestStatus = new RequestStatus();
+                            // PerformBackgroundTask this class is the class that extends AsynchTask
+                            requestStatus.execute();
+                            Log.i("INFO", "auto update here!!!!");
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(doAsynchronousTask, 0, 3000); //execute in every 3 s
     }
 }
