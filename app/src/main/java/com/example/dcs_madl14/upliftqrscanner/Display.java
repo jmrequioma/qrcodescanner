@@ -127,7 +127,7 @@ public class Display extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        callAsynchronousTask();
+        autoUpdate();
         //new RequestPassenger().execute();
         //new RequestStatus().execute();
         //new RequestLoadingBay().execute();
@@ -210,7 +210,7 @@ public class Display extends Activity {
                     unloadedCnt++;
                 }
             }
-            if (loadedCnt == unloadedCnt) {
+            if (loadedCnt == loadedCnt + unloadedCnt) {
                 check.setVisibility(View.VISIBLE);
             }
             //Log.i("hello", status);
@@ -422,7 +422,7 @@ public class Display extends Activity {
         new RequestLoadingBay().execute();
     }
 
-    public void callAsynchronousTask() {
+    public void autoUpdate() {
         final Handler handler = new Handler();
         Timer timer = new Timer();
         TimerTask doAsynchronousTask = new TimerTask() {
