@@ -123,6 +123,16 @@ public class Display extends Activity {
             Intent intent = new Intent(Display.this, ErrorDisplay.class);
             startActivity(intent);
         }
+        // this sets timer to 10 seconds so we can close the activity
+        Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }, 30000);   // 30 seconds
     }
     @Override
     protected void onStart() {

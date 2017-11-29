@@ -13,14 +13,14 @@
             android:id="@+id/btnScan"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fee_label"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/scan_again"
             android:onClick="onClick"
             android:text="@string/scan_label"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/passenger_label"
@@ -59,8 +59,8 @@
             android:id="@+id/destination_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/bus_value"
             android:layout_alignStart="@+id/passenger_value"
-            android:layout_alignTop="@+id/destination_label"
             android:text="@string/destination_value"
             android:textColor="#000000"
             android:textSize="22.5sp" />
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/bus_value"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="17dp"
             android:text="@string/bus_label"
             android:textColor="#3A3A3A"
             android:textSize="18sp" />
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/destination_value"
             android:layout_below="@+id/destination_label"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:text="@string/bus_value"
             android:textColor="#000000"
             android:textSize="22.5sp" />
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/bus_label"
             android:layout_below="@+id/bus_label"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="21dp"
             android:text="@string/loading_label"
             android:textColor="#3A3A3A"
             android:textSize="18sp" />
@@ -110,34 +110,12 @@
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/weight_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/loading_label"
-            android:layout_below="@+id/loading_label"
-            android:layout_marginTop="20dp"
-            android:text="@string/weight_label"
-            android:textColor="#3A3A3A"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/weight_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/weight_label"
-            android:layout_alignBottom="@+id/weight_label"
-            android:layout_alignStart="@+id/loading_value"
-            android:text="@string/weight_value"
-            android:textColor="#000000"
-            android:textSize="22.5sp" />
-
-        <TextView
             android:id="@+id/fee_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/weight_label"
-            android:layout_below="@+id/weight_label"
-            android:layout_marginTop="22dp"
+            android:layout_alignBaseline="@+id/fee_value"
+            android:layout_alignBottom="@+id/fee_value"
+            android:layout_alignStart="@+id/loading_label"
             android:text="@string/fee_label"
             android:textColor="#3A3A3A"
             android:textSize="18sp" />
@@ -146,9 +124,9 @@
             android:id="@+id/fee_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/fee_label"
-            android:layout_alignBottom="@+id/fee_label"
-            android:layout_alignStart="@+id/weight_value"
+            android:layout_alignStart="@+id/loading_value"
+            android:layout_below="@+id/loading_label"
+            android:layout_marginTop="28dp"
             android:text="@string/fee_value"
             android:textColor="#000000"
             android:textSize="22.5sp" />
