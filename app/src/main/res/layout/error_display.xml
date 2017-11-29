@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="@string/invalid_msg"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp" />
+        android:textSize="26sp" />
 
     <Button
         android:id="@+id/try_again"
@@ -32,5 +32,6 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/error_button"
         android:text="@string/try_again"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="21sp"/>
 </LinearLayout>
