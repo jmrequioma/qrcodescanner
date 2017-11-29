@@ -162,6 +162,7 @@
             android:layout_toEndOf="@+id/passenger_label"
             android:text="@string/status_label"
             android:textSize="28sp"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
         <TextView
@@ -172,6 +173,7 @@
             android:layout_alignStart="@+id/passenger_value"
             android:text="@string/status_value"
             android:textSize="28sp"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
         <TextView
