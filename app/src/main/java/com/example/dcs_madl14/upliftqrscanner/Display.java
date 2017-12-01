@@ -42,7 +42,7 @@ public class Display extends Activity {
     TextView bus_label;
     TextView loading_label;
     //TextView weight_label;
-    TextView fee_label;
+    //TextView fee_label;
     TextView status_value;
     TextView passenger_value;
     TextView via_value;
@@ -50,7 +50,7 @@ public class Display extends Activity {
     TextView bus_value;
     TextView loading_value;
     //TextView weight_value;
-    TextView fee_value;
+    //TextView fee_value;
 
     ImageView check;
     String qrCode;
@@ -73,14 +73,14 @@ public class Display extends Activity {
         bus_label = (TextView) findViewById(R.id.bus_label);
         loading_label = (TextView) findViewById(R.id.loading_label);
         //weight_label = (TextView) findViewById(R.id.weight_label);
-        fee_label = (TextView) findViewById(R.id.fee_label);
+        //fee_label = (TextView) findViewById(R.id.fee_label);
         passenger_value = (TextView) findViewById(R.id.passenger_value);
         via_value = (TextView) findViewById(R.id.via_value);
         destination_value = (TextView) findViewById(R.id.destination_value);
         bus_value = (TextView) findViewById(R.id.bus_value);
         loading_value = (TextView) findViewById(R.id.loading_value);
         //weight_value = (TextView) findViewById(R.id.weight_value);
-        fee_value = (TextView) findViewById(R.id.fee_value);
+        //fee_value = (TextView) findViewById(R.id.fee_value);
         btnScan = (Button) findViewById(R.id.btnScan);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,14 +103,14 @@ public class Display extends Activity {
         bus_label.setTypeface(montserratReg);
         loading_label.setTypeface(montserratReg);
         //weight_label.setTypeface(montserratReg);
-        fee_label.setTypeface(montserratReg);
+        //fee_label.setTypeface(montserratReg);
         passenger_value.setTypeface(montserratBold);
         via_value.setTypeface(montserratBold);
         destination_value.setTypeface(montserratBold);
         bus_value.setTypeface(montserratBold);
         loading_value.setTypeface(montserratBold);
         //weight_value.setTypeface(montserratBold);
-        fee_value.setTypeface(montserratBold);
+        //fee_value.setTypeface(montserratBold);
         btnScan.setTypeface(montserratReg);
         Intent i = getIntent();
         qrCode = i.getStringExtra("status");
@@ -190,12 +190,12 @@ public class Display extends Activity {
                 response = "THERE WAS AN ERROR";
             } else {
                 String passenger = displayName(response);
-                String fee = CURR + " " + displayFee(response);
+                //String fee = CURR + " " + displayFee(response);
                 String lBay = displayLoadingBay(response);
                 //String weight = displayWeight(response) + " " + WEIGHT_UNIT;
                 id = lBay;
                 passenger_value.setText(passenger);
-                fee_value.setText(fee);
+                //fee_value.setText(fee);
                 //loading_value.setText(lBay);
                 //weight_value.setText(weight);
                 dialog.dismiss();
