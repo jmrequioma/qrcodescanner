@@ -19,8 +19,9 @@
             android:background="@drawable/scan_again"
             android:onClick="onClick"
             android:text="@string/scan_label"
+            android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/passenger_label"

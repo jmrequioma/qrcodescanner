@@ -32,6 +32,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/error_button"
         android:text="@string/try_again"
+        android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="21sp"/>
 </LinearLayout>

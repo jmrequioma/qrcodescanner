@@ -14,7 +14,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/ic_title" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="CSBT Baggage Tracker"
+        android:text="CSBT BAGGAGE TRACKER"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         android:textStyle="bold" />
@@ -41,6 +41,7 @@
         android:onClick="onClick"
         android:text="Scan Code"
         android:textColor="@color/colorAccent"
-        android:textSize="22sp"/>
+        android:textAllCaps="false"
+        android:textSize="14sp"/>
 
 </LinearLayout>
