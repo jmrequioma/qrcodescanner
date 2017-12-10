@@ -114,7 +114,7 @@ public class Display extends Activity {
         btnScan.setTypeface(montserratReg);
         Intent i = getIntent();
         qrCode = i.getStringExtra("status");
-        // exectute here so it's faster
+        // execute here so it's faster
         try {
             new RequestPassenger().execute();
             new RequestStatus().execute();
@@ -205,6 +205,9 @@ public class Display extends Activity {
         }
 
     }
+
+    // (String) -> String
+    // returns baggage status value from the baggage status value found in the database
     private String displayStatus(String response) {
         int loadedCnt = 0;
         int unloadedCnt = 0;
@@ -233,6 +236,8 @@ public class Display extends Activity {
         return String.valueOf(loadedCnt) + "/" + String.valueOf(loadedCnt + unloadedCnt);
     }
 
+    // (String) -> String
+    // returns name value from the first name and last name values found in the database
     private String displayName(String response) {
         String passenger = "";
         try {
@@ -249,6 +254,8 @@ public class Display extends Activity {
         return passenger;
     }
 
+    // (String) -> String
+    // returns fee value from the fee value found in the database
     private String displayFee(String response) {
         String fee = "";
         try {
@@ -264,6 +271,8 @@ public class Display extends Activity {
         return fee;
     }
 
+    // (String) -> String
+    // returns loading bay value from the loading bay value found in the database
     private String displayLoadingBay(String response) {
         String lBay = "";
         try {
@@ -279,6 +288,8 @@ public class Display extends Activity {
         return lBay;
     }
 
+    // (String) -> String
+    // returns weight value from the weight value found in the database
     private String displayWeight(String response) {
         String weight = "";
         try {
@@ -294,6 +305,7 @@ public class Display extends Activity {
         return weight;
     }
 
+    // requests for baggage status
     private class RequestStatus extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
@@ -345,6 +357,7 @@ public class Display extends Activity {
         }
     }
 
+    // requests for loading bay status
     private class RequestLoadingBay extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
@@ -406,6 +419,8 @@ public class Display extends Activity {
         }
     }
 
+    // (String) -> void
+    // sets text values to the values retrieved from the database
     private void displayLoadingInfo(String response) {
         int id;
         String via, destination, bus, lBayName;
@@ -425,6 +440,7 @@ public class Display extends Activity {
         }
     }
 
+    // (View) -> void
     // retrieves data from database again
     public void refreshStat(View v) {
         new RequestPassenger().execute();
@@ -432,6 +448,8 @@ public class Display extends Activity {
         new RequestLoadingBay().execute();
     }
 
+    // (void) -> void
+    // updates the bagggage status
     public void autoUpdate() {
         final Handler handler = new Handler();
         Timer timer = new Timer();

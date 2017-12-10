@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by Joshua Requioma on 11/5/2017.
+ * Created by Jerome Requioma on 11/5/2017.
  */
 
 public class ErrorDisplay extends Activity {
