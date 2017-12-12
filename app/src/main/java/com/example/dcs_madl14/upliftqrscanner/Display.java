@@ -58,6 +58,7 @@ public class Display extends Activity {
 
     final String CURR = "Php";
     final String WEIGHT_UNIT = "kg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //status_value.setText("hellow");
@@ -93,8 +94,8 @@ public class Display extends Activity {
         check = (ImageView) findViewById(R.id.check);
         check.setVisibility(View.INVISIBLE);
         btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
-        Typeface montserratBold = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Bold.otf");
-        Typeface montserratReg = Typeface.createFromAsset(getAssets(),  "fonts/Montserrat-Regular.otf");
+        Typeface montserratBold = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.otf");
+        Typeface montserratReg = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Regular.otf");
         status_label.setTypeface(montserratBold);
         status_value.setTypeface(montserratBold);
         passenger_label.setTypeface(montserratReg);
@@ -134,6 +135,7 @@ public class Display extends Activity {
             }
         }, 30000);   // 30 seconds
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -142,7 +144,7 @@ public class Display extends Activity {
         //new RequestStatus().execute();
         //new RequestLoadingBay().execute();
     }
-    
+
     // retrieves passenger information
     private class RequestPassenger extends AsyncTask<Void, Void, String> {
         @Override
@@ -186,7 +188,7 @@ public class Display extends Activity {
 
         @Override
         protected void onPostExecute(String response) {
-            if(response == null) {
+            if (response == null) {
                 response = "THERE WAS AN ERROR";
             } else {
                 String passenger = displayName(response);
@@ -214,7 +216,7 @@ public class Display extends Activity {
         String status = "";
         try {
             JSONArray array = new JSONArray(response);
-            for(int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 JSONObject explrObject = array.getJSONObject(i);
                 status = explrObject.getString("status");
                 if (status.equals("LOADED")) {
